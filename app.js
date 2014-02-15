@@ -25,9 +25,45 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+senddata = function(req, res) {
+  // Droid.findOne().exec(function(err,droid) {
+  //   console.log(droid);
+  //     res.send(droid.Bytes);
+  // });
+  res.send("001");
+}
+
+savedata = function(req, res) {
+  bytes = req.body.bytes;
+  location = req.body.location;
+
+  console.log(bytes);
+  console.log(target);
+
+  Droid.findOne({}).exec(function(err,droid) {
+    if(err) {
+      console.log("Error: ", err);
+    } else {
+      if(droid) {
+        droid.Bytes = bytes;
+        droid.save();
+        console.log(droid);
+      } else {
+        var new_droid = new User({Bytes:bytes});
+        new_droid.save();
+        console.log(new_droid);
+        console.log("Database entry had to be recreated.");;
+      }
+      res.send("Data saved.\n");
+    }
+  });
+}
+
 app.get('/', function(req, res) {
-  res.send("Hello world!");
+  res.render("tweets");
 });
+app.post('/', savedata);
+app.get('/droid', senddata);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
