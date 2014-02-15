@@ -30,7 +30,7 @@ senddata = function(req, res) {
   //   console.log(droid);
   //     res.send(droid.Bytes);
   // });
-  res.send("001");
+  res.send(String.fromCharCode(0)+String.fromCharCode(0)+String.fromCharCode(1));
 }
 
 savedata = function(req, res) {
