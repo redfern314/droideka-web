@@ -32,7 +32,8 @@ senddata = function(req, res) {
   console.log("??");
   Droid.find({name:"mit"}).exec(function(err,droid) {
     console.log(droid);
-      res.send(droid.Bytes);
+    console.log(droid.Bytes);
+    res.send(droid.Bytes);
   });
   // res.send(String.fromCharCode(0)+String.fromCharCode(0)+String.fromCharCode(1));
 }
