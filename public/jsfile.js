@@ -7,6 +7,7 @@ var data = function(){
     }
     var b = String.fromCharCode(parseInt($('#speed').val()))+String.fromCharCode(dir)+String.fromCharCode(parseInt($("#reverse").val()));
     $.post('/', {bytes: b});
+    console.log(b);
   }
 
 $(document).ready(function(){
