@@ -48,7 +48,7 @@ savedata = function(req, res) {
       console.log("Error: ", err);
     } else {
       if(droid) {
-        droid.Bytes = "wat";
+        droid.Bytes = bytes;
         droid.save(function (err) {
           res.send("Data saved.\n");
         });
