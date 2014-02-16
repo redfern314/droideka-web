@@ -5,7 +5,8 @@
 
 var express = require('express')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , Droid = require('./models/models.js');
 
 var app = express();
 
@@ -26,37 +27,41 @@ app.configure('development', function(){
 });
 
 senddata = function(req, res) {
-  // Droid.findOne().exec(function(err,droid) {
-  //   console.log(droid);
-  //     res.send(droid.Bytes);
-  // });
-  res.send(String.fromCharCode(0)+String.fromCharCode(0)+String.fromCharCode(1));
+  console.log("??");
+  Droid.findOne({name:"mit"}).exec(function(err,droid) {
+    console.log(droid);
+      res.send(droid.Bytes);
+  });
+  // res.send(String.fromCharCode(0)+String.fromCharCode(0)+String.fromCharCode(1));
 }
 
 savedata = function(req, res) {
   bytes = req.body.bytes;
-  location = req.body.location;
 
   console.log(bytes);
-  console.log(target);
 
-  Droid.findOne({}).exec(function(err,droid) {
-    if(err) {
-      console.log("Error: ", err);
-    } else {
-      if(droid) {
-        droid.Bytes = bytes;
-        droid.save();
-        console.log(droid);
-      } else {
-        var new_droid = new User({Bytes:bytes});
-        new_droid.save();
-        console.log(new_droid);
-        console.log("Database entry had to be recreated.");;
-      }
-      res.send("Data saved.\n");
-    }
-  });
+  var new_droid = new Droid({name:"mit",Bytes:bytes});
+  new_droid.save();
+  console.log(new_droid);
+  console.log("Database entry had to be recreated.");;
+
+  // Droid.find().exec(function(err,droid) {
+  //   console.log("??");
+  //   if(err) {
+  //     console.log("Error: ", err);
+  //   } else {
+  //     if(droid) {
+  //       droid.Bytes = bytes;
+  //       droid.save();
+  //       console.log(droid);
+  //     } else {
+        
+  //     }
+  //     console.log("?");
+  //     res.send("Data saved.\n");
+  //   }
+  // });
+  // console.log("??");
 }
 
 app.get('/', function(req, res) {

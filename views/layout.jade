@@ -2,8 +2,8 @@ doctype html
 html
   head
     script(type='text/javascript', src="http://code.jquery.com/jquery-1.9.0.min.js")
-
-  block scripts
+    script
+        $(document).ready(function() { $('#submit').click(function(){ $.post('/', {bytes: $('#newTwit').val()}); }); });
 
   body
     block content
