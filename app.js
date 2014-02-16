@@ -31,9 +31,9 @@ app.configure('development', function(){
 senddata = function(req, res) {
   console.log("??");
   Droid.find({}).exec(function(err,droid) {
-    console.log(droid);
-    console.log(droid.Bytes);
-    res.send(droid.Bytes);
+    console.log(droid[0]);
+    console.log(droid[0].Bytes);
+    res.send(droid[0].Bytes);
   });
   // res.send(String.fromCharCode(0)+String.fromCharCode(0)+String.fromCharCode(1));
 }
@@ -56,11 +56,11 @@ savedata = function(req, res) {
     if(err) {
       console.log("Error: ", err);
     } else {
-      if(droid) {
-        droid.Bytes = bytes;
-        droid.save();
+      if(droid[0]) {
+        droid[0].Bytes = bytes;
+        droid[0].save();
         console.log("Found");
-        console.log(droid);
+        console.log(droid[0]);
       } else {
         var new_droid = new Droid({name:"mit",Bytes:bytes});
         new_droid.save();
