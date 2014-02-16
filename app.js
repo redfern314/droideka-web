@@ -30,7 +30,7 @@ app.configure('development', function(){
 
 senddata = function(req, res) {
   console.log("??");
-  Droid.findOne({name:"mit"}).exec(function(err,droid) {
+  Droid.find({name:"mit"}).exec(function(err,droid) {
     console.log(droid);
       res.send(droid.Bytes);
   });
@@ -40,15 +40,7 @@ senddata = function(req, res) {
 savedata = function(req, res) {
   bytes = req.body.bytes;
 
-  console.log(Droid);
-  console.log(bytes);
-
-  var new_droid = new Droid({name:"mit",Bytes:bytes});
-  new_droid.save();
-  console.log(new_droid);
-  console.log("Database entry had to be recreated.");;
-
-  Droid.find().exec(function(err,droid) {
+  Droid.find({name:"mit"}).exec(function(err,droid) {
     console.log("??");
     if(err) {
       console.log("Error: ", err);
@@ -56,11 +48,14 @@ savedata = function(req, res) {
       if(droid) {
         droid.Bytes = bytes;
         droid.save();
+        console.log("Found");
         console.log(droid);
       } else {
-        
+        var new_droid = new Droid({name:"mit",Bytes:bytes});
+        new_droid.save();
+        console.log(new_droid);
+        console.log("Database entry had to be recreated.");;
       }
-      console.log("?");
       res.send("Data saved.\n");
     }
   });
