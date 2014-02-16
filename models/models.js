@@ -3,7 +3,9 @@ var mongoose = require('mongoose')
 
 var droidSchema = mongoose.Schema({
 	name: String,
-    Bytes: String
+    speed: String,
+    direction: String,
+    reverse: String
 });
 
 module.exports = mongoose.model('droids', droidSchema);
