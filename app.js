@@ -38,6 +38,16 @@ senddata = function(req, res) {
   // res.send(String.fromCharCode(0)+String.fromCharCode(0)+String.fromCharCode(1));
 }
 
+canned = function(req, res) {
+  // console.log("??");
+  // Droid.find({name:"mit"}).exec(function(err,droid) {
+  //   console.log(droid);
+  //   console.log(droid.Bytes);
+  //   res.send(droid.Bytes);
+  // });
+  res.send(String.fromCharCode(0)+String.fromCharCode(0)+String.fromCharCode(1));
+}
+
 savedata = function(req, res) {
   bytes = req.body.bytes;
 
@@ -67,7 +77,8 @@ app.get('/', function(req, res) {
   res.render("tweets");
 });
 app.post('/', savedata);
-app.get('/droid', senddata);
+app.get('/droid', canned);
+app.get('/droid2', senddata);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
