@@ -6,9 +6,6 @@ var data = function(){
         dir=2;
     }
     var b = String.fromCharCode(parseInt($('#speed').val()))+String.fromCharCode(dir)+String.fromCharCode(parseInt($("#reverse").val()));
-    if (b.length > 3) {
-        b=b.substring(1,4);
-    }
     $.post('/', {bytes: b});
     console.log(b);
   }
