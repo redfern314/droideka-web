@@ -1,10 +1,9 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+	, Schema = mongoose.Schema;
 
 var droidSchema = mongoose.Schema({
 	name: String,
     Bytes: String
 });
 
-var Droid = mongoose.model('Droid', droidSchema);
-
-module.exports = Droid;
+module.exports = mongoose.model('droids', droidSchema);
