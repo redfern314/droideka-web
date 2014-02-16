@@ -7,10 +7,11 @@ var data = function(){
     }
     var b = String.fromCharCode(parseInt($('#speed').val()))+String.fromCharCode(dir)+String.fromCharCode(parseInt($("#reverse").val()));
     $.post('/', {bytes: b});
+    console.log(b);
   }
 
 $(document).ready(function(){
-  $('#speed').change(sendData);
-  $('#direction').change(sendData);
-  $('#reverse').change(sendData);
+  $('#speed').change(data);
+  $('#direction').change(data);
+  $('#reverse').change(data);
 });

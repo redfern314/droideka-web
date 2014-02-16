@@ -2,9 +2,7 @@ var mongoose = require('mongoose')
 	, Schema = mongoose.Schema;
 
 var droidSchema = mongoose.Schema({
-	name: String,
-    speed: String,
-    direction: String,
+	Bytes: String,
     reverse: String
 });
 

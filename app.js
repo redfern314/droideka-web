@@ -29,38 +29,41 @@ app.configure('development', function(){
 });
 
 senddata = function(req, res) {
-  console.log("??");
-  Droid.find({}).exec(function(err,droid) {
-    console.log(droid[0]);
-    console.log(droid[0].Bytes);
-    res.send(droid[0].Bytes);
+  console.log("I'm sending.");
+  Droid.findOne().exec(function(err,droid) {
+    console.log(droid);
+    console.log(droid.Bytes);
+    res.send(droid.Bytes);
   });
   // res.send(String.fromCharCode(0)+String.fromCharCode(0)+String.fromCharCode(1));
 }
 
 savedata = function(req, res) {
   bytes = req.body.bytes;
+  console.log(bytes);
+  console.log("I'm saving.");
 
-  Droid.find({}).exec(function(err,droid) {
-    console.log("??");
+  Droid.findOne().exec(function(err,droid) {
     if(err) {
       console.log("Error: ", err);
     } else {
-      if(droid[0]) {
-        droid[0].Bytes = bytes;
-        droid[0].save();
+      if(droid) {
+        droid.Bytes = bytes;
+        droid.save(function (err) {
+          res.send("Data saved.\n");
+        });
         console.log("Found");
-        console.log(droid[0]);
+        console.log(droid);
       } else {
         var new_droid = new Droid({name:"mit",Bytes:bytes});
-        new_droid.save();
+        new_droid.save(function (err) {
+          res.send("Data saved.\n");
+        });
         console.log(new_droid);
         console.log("Database entry had to be recreated.");;
       }
-      res.send("Data saved.\n");
     }
   });
-  console.log("??");
 }
 
 app.get('/', function(req, res) {
