@@ -15,7 +15,8 @@ app.configure(function(){
   mongoose.connect(process.env.MONGOLAB_URI || 'localhost');
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
+  app.engine('html', require('ejs').renderFile);
+  // app.set('view engine', 'jade');
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -67,7 +68,7 @@ savedata = function(req, res) {
 }
 
 app.get('/', function(req, res) {
-  res.render("tweets");
+  res.render("index.html");
 });
 app.post('/', savedata);
 app.get('/droid', senddata);
