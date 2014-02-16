@@ -42,7 +42,6 @@ savedata = function(req, res) {
   bytes = req.body.bytes;
 
   Droid.find({}).exec(function(err,droid) {
-    console.log("??");
     if(err) {
       console.log("Error: ", err);
     } else {

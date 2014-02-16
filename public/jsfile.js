@@ -10,7 +10,7 @@ var data = function(){
   }
 
 $(document).ready(function(){
-  $('#speed').change(sendData);
-  $('#direction').change(sendData);
-  $('#reverse').change(sendData);
+  $('#speed').change(data);
+  $('#direction').change(data);
+  $('#reverse').change(data);
 });
