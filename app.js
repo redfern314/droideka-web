@@ -30,7 +30,7 @@ app.configure('development', function(){
 
 senddata = function(req, res) {
   console.log("??");
-  Droid.find({name:"mit"}).exec(function(err,droid) {
+  Droid.find({}).exec(function(err,droid) {
     console.log(droid);
     console.log(droid.Bytes);
     res.send(droid.Bytes);
@@ -51,7 +51,7 @@ canned = function(req, res) {
 savedata = function(req, res) {
   bytes = req.body.bytes;
 
-  Droid.find({name:"mit"}).exec(function(err,droid) {
+  Droid.find({}).exec(function(err,droid) {
     console.log("??");
     if(err) {
       console.log("Error: ", err);
