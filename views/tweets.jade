@@ -3,13 +3,10 @@ extends layout
 block content
   div Set the speed
   div
-    input(type="range", id="speed", min="0", max="255",width="200px")
-  div Set the direction (left-right)
+    input(type="range", id="speed", min="0", max="255",value="0")
+  div Set the direction (left-straight-right)
   div
-    input(type="button", id="left", value="Left")
-    input(type="button", id="straight", value="Straight")
-    input(type="button", id="right", value="Right")
+    input(type="range", id="direction",min="0",max="2",value="1")
   div Set the direction (forward-backward)
   div
-    input(type="button", id="forward", value="Forward")
-    input(type="button", id="backward", value="Backward")
+    input(type="range", id="reverse",min="0",max="1",value="0")
